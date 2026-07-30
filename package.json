@@ -9,15 +9,32 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.1095.0",
+    "@aws-sdk/s3-request-presigner": "^3.1095.0",
+    "@libsql/client": "^0.17.4",
+    "@prisma/adapter-libsql": "^7.9.0",
+    "@prisma/client": "^7.9.0",
+    "@vercel/og": "^0.11.1",
+    "better-auth": "^1.6.25",
+    "date-fns": "^4.4.0",
+    "framer-motion": "^12.42.2",
+    "lucide-react": "^1.26.0",
     "next": "16.2.11",
+    "next-themes": "^1.0.0-beta.0",
+    "prisma": "^7.9.0",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "react-markdown": "^10.1.0",
+    "recharts": "^3.10.1",
+    "sonner": "^2.0.7",
+    "sqlite3": "^6.0.1"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "dotenv": "^17.4.2",
     "eslint": "^9",
     "eslint-config-next": "16.2.11",
     "tailwindcss": "^4",

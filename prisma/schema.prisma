@@ -1,0 +1,283 @@
+// ================================================================
+// BUILDVINE — Prisma Schema
+// Phase 1: User, Project, TechStack, Category
+// ================================================================
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+// ----------------------------------------------------------------
+// USER
+// ----------------------------------------------------------------
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  username        String?   @unique
+  displayUsername String?
+  name            String
+  emailVerified Boolean   @default(false)
+  image         String?
+  avatar        String?
+  bio           String?
+  website       String?
+  github        String?
+  twitter       String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  // Relations
+  projects  Project[]
+  accounts  Account[]
+  sessions  Session[]
+  upvotes   Upvote[]
+  
+  // Follows relations
+  followers Follow[] @relation("UserFollowers")
+  following Follow[] @relation("UserFollowing")
+  
+  notifications Notification[]
+  comments      Comment[]
+
+  @@map("users")
+}
+
+// ----------------------------------------------------------------
+// AUTH — Better Auth compatible tables
+// ----------------------------------------------------------------
+model Account {
+  id                    String    @id @default(cuid())
+  accountId             String
+  providerId            String
+  userId                String
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  @@map("accounts")
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  expiresAt DateTime
+  token     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  ipAddress String?
+  userAgent String?
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([token])
+  @@map("sessions")
+}
+
+model Verification {
+  id         String    @id @default(cuid())
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+
+  @@map("verifications")
+}
+
+// ----------------------------------------------------------------
+// PROJECT
+// ----------------------------------------------------------------
+model Project {
+  id          String        @id @default(cuid())
+  slug        String        @unique
+  name        String
+  tagline     String?
+  description String?
+  status      ProjectStatus @default(IDEA)
+  logo        String?
+  coverImage  String?
+  website     String?
+  github      String?
+  liveDemo    String?
+  docs        String?
+  downloadUrl String?
+  isPublic    Boolean       @default(true)
+  views       Int           @default(0)
+  userId      String
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  // Relations
+  user      User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  techStack ProjectTechStack[]
+  categories ProjectCategory[]
+  features  ProjectFeature[]
+  timeline  ProjectTimeline[]
+  upvotes   Upvote[]
+  comments  Comment[]
+
+  @@index([userId])
+  @@index([status])
+  @@map("projects")
+}
+
+enum ProjectStatus {
+  IDEA
+  IN_PROGRESS
+  BETA
+  LIVE
+  ARCHIVED
+}
+
+// ----------------------------------------------------------------
+// PROJECT TECH STACK
+// ----------------------------------------------------------------
+model ProjectTechStack {
+  id        String   @id @default(cuid())
+  projectId String
+  techName  String
+  category  TechCategory @default(OTHER)
+
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@unique([projectId, techName])
+  @@map("project_tech_stack")
+}
+
+// ----------------------------------------------------------------
+// PROJECT FEATURE
+// ----------------------------------------------------------------
+model ProjectFeature {
+  id          String   @id @default(cuid())
+  projectId   String
+  icon        String?
+  title       String
+  description String
+
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@map("project_features")
+}
+
+// ----------------------------------------------------------------
+// PROJECT TIMELINE
+// ----------------------------------------------------------------
+model ProjectTimeline {
+  id        String   @id @default(cuid())
+  projectId String
+  date      String
+  title     String
+  icon      String?
+
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@map("project_timeline")
+}
+
+enum TechCategory {
+  FRONTEND
+  BACKEND
+  DATABASE
+  DEVOPS
+  MOBILE
+  AI_ML
+  DESIGN
+  OTHER
+}
+
+// ----------------------------------------------------------------
+// PROJECT CATEGORY / TAG
+// ----------------------------------------------------------------
+model ProjectCategory {
+  id        String @id @default(cuid())
+  projectId String
+  category  String
+
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@unique([projectId, category])
+  @@map("project_categories")
+}
+
+// ----------------------------------------------------------------
+// SOCIAL
+// ----------------------------------------------------------------
+model Upvote {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+
+  // Relations
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  projectId String
+  project   Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  // A user can only upvote a specific project once
+  @@unique([userId, projectId])
+  @@map("upvotes")
+}
+
+model Follow {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+
+  // Relations
+  followerId  String
+  follower    User   @relation("UserFollowing", fields: [followerId], references: [id], onDelete: Cascade)
+  
+  followingId String
+  following   User   @relation("UserFollowers", fields: [followingId], references: [id], onDelete: Cascade)
+
+  // A user can only follow another specific user once
+  @@unique([followerId, followingId])
+  @@map("follows")
+}
+
+model Comment {
+  id        String   @id @default(cuid())
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  projectId String
+  project   Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([projectId])
+  @@map("comments")
+}
+
+// ----------------------------------------------------------------
+// NOTIFICATIONS
+// ----------------------------------------------------------------
+model Notification {
+  id        String   @id @default(cuid())
+  type      String   // e.g. "NEW_PROJECT", "NEW_FOLLOWER", "TIMELINE_UPDATE"
+  title     String
+  content   String?
+  link      String?  // The URL to navigate to when clicked
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Optional reference to the user who triggered the notification
+  actorId   String?
+
+  @@index([userId])
+  @@map("notifications")
+}
