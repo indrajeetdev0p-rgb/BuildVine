@@ -125,7 +125,7 @@ export default function RootLayout({
         <Toaster position="bottom-right" theme="dark" richColors />
         <Script
           async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_ADSENSE_ID"
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8605608795686474"
           crossOrigin="anonymous"
           strategy="afterInteractive"
         />

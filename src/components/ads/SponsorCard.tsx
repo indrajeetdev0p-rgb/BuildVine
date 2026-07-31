@@ -35,8 +35,8 @@ export function SponsorCard({ variant = "feed" }: SponsorCardProps) {
       <ins
         className="adsbygoogle"
         style={{ display: "block", width: "100%", height: "100%", minHeight: "100%" }}
-        data-ad-client="ca-pub-YOUR_ADSENSE_ID"
-        data-ad-slot="YOUR_AD_SLOT"
+        data-ad-client="ca-pub-8605608795686474"
+        data-ad-slot="2352469195"
         data-ad-format="auto"
         data-full-width-responsive="true"
       />
