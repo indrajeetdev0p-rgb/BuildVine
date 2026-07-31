@@ -301,7 +301,7 @@ export default function ProjectContent({ project, isModal = false }: { project: 
                       </div>
                       <div>
                         <p className="font-heading text-2xl font-bold">
-                          {0}
+                          {project.user?._count?.followers || 0}
                         </p>
                         <p className="text-xs text-text-tertiary flex items-center gap-1">
                           <Users size={12} /> Followers

@@ -98,7 +98,7 @@ export default function UserContent({ user }: { user: any }) {
                       />
                     )}
                     {user.github && (
-                      <a href={user.github} target="_blank" rel="noopener noreferrer">
+                      <a href={user.github.startsWith("http") ? user.github : `https://${user.github}`} target="_blank" rel="noopener noreferrer">
                         <Button variant="secondary" size="sm" leftIcon={<GithubIcon size={14} />}>
                           GitHub
                         </Button>
@@ -115,7 +115,7 @@ export default function UserContent({ user }: { user: any }) {
                 <div className="mt-4 flex flex-wrap items-center gap-4 text-xs text-text-tertiary">
                   {user.website && (
                     <a
-                      href={user.website}
+                      href={user.website.startsWith("http") ? user.website : `https://${user.website}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center gap-1.5 hover:text-accent transition-colors"
@@ -126,7 +126,7 @@ export default function UserContent({ user }: { user: any }) {
                   )}
                   {user.twitter && (
                     <a
-                      href={`https://twitter.com/${user.twitter}`}
+                      href={user.twitter.startsWith("http") ? user.twitter : `https://twitter.com/${user.twitter.replace(/^@/, "")}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center gap-1.5 hover:text-accent transition-colors"

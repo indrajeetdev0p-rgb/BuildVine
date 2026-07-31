@@ -19,6 +19,9 @@ export default async function ProjectModalPage({ params }: { params: Promise<{ s
             username: true,
             avatar: true,
             image: true,
+            _count: {
+              select: { followers: true }
+            }
           },
         },
         techStack: true,
