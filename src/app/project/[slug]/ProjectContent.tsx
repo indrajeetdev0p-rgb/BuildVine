@@ -229,10 +229,14 @@ export default function ProjectContent({ project, isModal = false }: { project: 
                         .filter((link) => link.url)
                         .map((link) => {
                           const Icon = link.icon;
+                          const formattedUrl = (link.url as string).startsWith("http") 
+                            ? link.url as string 
+                            : `https://${link.url}`;
+                          
                           return (
                             <a
                               key={link.label}
-                              href={link.url as string}
+                              href={formattedUrl}
                               target="_blank"
                               rel="noopener noreferrer"
                               className="flex items-center gap-3 rounded-[var(--radius-sm)] px-3 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-hover transition-colors"

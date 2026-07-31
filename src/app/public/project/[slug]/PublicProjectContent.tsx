@@ -124,14 +124,25 @@ export default function PublicProjectContent({ project }: { project: any }) {
                       </div>
                       
                       {project.websiteUrl && (
-                        <a href={project.websiteUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-text-primary transition-colors">
-                          <ExternalLink size={16} />
-                          {new URL(project.websiteUrl).hostname.replace("www.", "")}
-                        </a>
+                        (() => {
+                          const formattedUrl = project.websiteUrl.startsWith("http") 
+                            ? project.websiteUrl 
+                            : `https://${project.websiteUrl}`;
+                          
+                          let hostname = project.websiteUrl;
+                          try { hostname = new URL(formattedUrl).hostname.replace("www.", ""); } catch(e) {}
+                          
+                          return (
+                            <a href={formattedUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-text-primary transition-colors">
+                              <ExternalLink size={16} />
+                              {hostname}
+                            </a>
+                          );
+                        })()
                       )}
                       
                       {project.githubUrl && (
-                        <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-text-primary transition-colors">
+                        <a href={project.githubUrl.startsWith("http") ? project.githubUrl : `https://${project.githubUrl}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-text-primary transition-colors">
                           <GithubIcon size={16} />
                           Repository
                         </a>
