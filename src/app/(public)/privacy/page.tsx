@@ -1,89 +1,138 @@
 import { Metadata } from "next";
-import { Telescope } from "lucide-react";
+import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | BuildVine",
-  description: "Privacy Policy for BuildVine",
+  title: "Privacy Policy",
+  description: "BuildVine Privacy Policy — how we collect, use, and protect your data.",
 };
 
 export default function PrivacyPage() {
   return (
-    <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
+    <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+      {/* Header */}
       <div className="mb-12">
-        <h1 className="text-4xl font-extrabold tracking-tight text-text-primary font-heading flex items-center gap-4 mb-4">
-          <Telescope className="text-accent" size={36} />
+        <p className="text-sm font-medium text-accent mb-2">Legal</p>
+        <h1 className="font-heading text-4xl font-extrabold tracking-tight text-text-primary mb-4">
           Privacy Policy
         </h1>
-        <p className="text-text-secondary text-lg">
-          Last updated: {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
-        </p>
+        <p className="text-text-secondary">Last updated: July 30, 2026</p>
       </div>
 
-      <div className="prose prose-invert max-w-none text-text-secondary prose-headings:text-text-primary prose-a:text-accent hover:prose-a:text-accent-hover">
-        <p>
-          At BuildVine, accessible from buildvine.tech, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by BuildVine and how we use it.
-        </p>
+      {/* Content */}
+      <div className="space-y-10 text-text-secondary leading-relaxed">
+        <section>
+          <h2 className="font-heading text-xl font-bold text-text-primary mb-3">1. Introduction</h2>
+          <p>
+            BuildVine is committed to protecting your privacy. This Privacy Policy explains how we collect,
+            use, and safeguard your information when you use our platform at buildvine.tech.
+          </p>
+        </section>
 
-        <p>
-          If you have additional questions or require more information about our Privacy Policy, do not hesitate to contact us.
-        </p>
+        <section>
+          <h2 className="font-heading text-xl font-bold text-text-primary mb-3">2. Information We Collect</h2>
+          <ul className="list-disc list-inside space-y-2 pl-2">
+            <li><strong className="text-text-primary">Account Information:</strong> Name, email, username, and profile picture when you register.</li>
+            <li><strong className="text-text-primary">OAuth Data:</strong> Public profile data from GitHub or Google if you use social sign-in.</li>
+            <li><strong className="text-text-primary">Project Content:</strong> Projects, descriptions, and other content you create.</li>
+            <li><strong className="text-text-primary">Usage Data:</strong> Pages visited and features used to improve the Service.</li>
+            <li><strong className="text-text-primary">Technical Data:</strong> IP address, browser type, and device information for security.</li>
+          </ul>
+        </section>
 
-        <h2>General Data Protection Regulation (GDPR)</h2>
-        <p>We are a Data Controller of your information.</p>
-        <p>
-          BuildVine legal basis for collecting and using the personal information described in this Privacy Policy depends on the Personal Information we collect and the specific context in which we collect the information:
-        </p>
-        <ul>
-          <li>BuildVine needs to perform a contract with you</li>
-          <li>You have given BuildVine permission to do so</li>
-          <li>Processing your personal information is in BuildVine legitimate interests</li>
-          <li>BuildVine needs to comply with the law</li>
-        </ul>
+        <section>
+          <h2 className="font-heading text-xl font-bold text-text-primary mb-3">3. How We Use Your Information</h2>
+          <ul className="list-disc list-inside space-y-2 pl-2">
+            <li>Provide, operate, and improve the BuildVine platform.</li>
+            <li>Send you notifications about activity on your projects (comments, follows, etc.).</li>
+            <li>Authenticate your identity and secure your account.</li>
+            <li>Respond to your support requests.</li>
+            <li>Analyze usage patterns to improve user experience.</li>
+          </ul>
+        </section>
 
-        <p>
-          BuildVine will retain your personal information only for as long as is necessary for the purposes set out in this Privacy Policy. We will retain and use your information to the extent necessary to comply with our legal obligations, resolve disputes, and enforce our policies.
-        </p>
+        <section>
+          <h2 className="font-heading text-xl font-bold text-text-primary mb-3">4. Email Notifications</h2>
+          <p>
+            We use Resend to send transactional email notifications from{" "}
+            <strong className="text-text-primary">notifications@buildvine.tech</strong>.
+            You can manage your notification preferences in your account settings.
+          </p>
+        </section>
 
-        <h2>Information we collect</h2>
-        <p>
-          The personal information that you are asked to provide, and the reasons why you are asked to provide it, will be made clear to you at the point we ask you to provide your personal information.
-        </p>
-        <p>
-          If you contact us directly, we may receive additional information about you such as your name, email address, phone number, the contents of the message and/or attachments you may send us, and any other information you may choose to provide.
-        </p>
-        <p>
-          When you register for an Account, we may ask for your contact information, including items such as name, company name, address, email address, and telephone number.
-        </p>
+        <section>
+          <h2 className="font-heading text-xl font-bold text-text-primary mb-3">5. Data Sharing</h2>
+          <p>
+            We do not sell, trade, or rent your personal information to third parties. We may share data only
+            with trusted service providers who help us operate the platform (hosting, email delivery),
+            under strict confidentiality agreements.
+          </p>
+        </section>
 
-        <h2>How we use your information</h2>
-        <p>We use the information we collect in various ways, including to:</p>
-        <ul>
-          <li>Provide, operate, and maintain our website</li>
-          <li>Improve, personalize, and expand our website</li>
-          <li>Understand and analyze how you use our website</li>
-          <li>Develop new products, services, features, and functionality</li>
-          <li>Communicate with you, either directly or through one of our partners, including for customer service, to provide you with updates and other information relating to the website, and for marketing and promotional purposes</li>
-          <li>Send you emails</li>
-          <li>Find and prevent fraud</li>
-        </ul>
+        <section>
+          <h2 className="font-heading text-xl font-bold text-text-primary mb-3">6. Public Information</h2>
+          <p>
+            Your username, profile, and public projects are visible to all visitors. Be mindful of what
+            information you choose to make public.
+          </p>
+        </section>
 
-        <h2>Log Files</h2>
-        <p>
-          BuildVine follows a standard procedure of using log files. These files log visitors when they visit websites. All hosting companies do this and a part of hosting services' analytics. The information collected by log files include internet protocol (IP) addresses, browser type, Internet Service Provider (ISP), date and time stamp, referring/exit pages, and possibly the number of clicks. These are not linked to any information that is personally identifiable. The purpose of the information is for analyzing trends, administering the site, tracking users' movement on the website, and gathering demographic information.
-        </p>
+        <section>
+          <h2 className="font-heading text-xl font-bold text-text-primary mb-3">7. Data Security</h2>
+          <p>
+            We use industry-standard security measures including encrypted connections (HTTPS) and secure
+            authentication. However, no internet transmission is 100% secure.
+          </p>
+        </section>
 
-        <h2>Cookies and Web Beacons</h2>
-        <p>
-          Like any other website, BuildVine uses 'cookies'. These cookies are used to store information including visitors' preferences, and the pages on the website that the visitor accessed or visited. The information is used to optimize the users' experience by customizing our web page content based on visitors' browser type and/or other information.
-        </p>
+        <section>
+          <h2 className="font-heading text-xl font-bold text-text-primary mb-3">8. Your Rights</h2>
+          <ul className="list-disc list-inside space-y-2 pl-2">
+            <li>Access and review the personal information we hold about you.</li>
+            <li>Request correction of inaccurate data.</li>
+            <li>Request deletion of your account and associated data.</li>
+            <li>Opt out of non-essential communications.</li>
+          </ul>
+          <p className="mt-3">
+            To exercise these rights, contact{" "}
+            <a href="mailto:hello@buildvine.tech" className="text-accent hover:underline">
+              hello@buildvine.tech
+            </a>.
+          </p>
+        </section>
 
-        <h2>Third Party Privacy Policies</h2>
-        <p>
-          BuildVine's Privacy Policy does not apply to other advertisers or websites. Thus, we are advising you to consult the respective Privacy Policies of these third-party ad servers for more detailed information. It may include their practices and instructions about how to opt-out of certain options.
-        </p>
-        <p>
-          You can choose to disable cookies through your individual browser options. To know more detailed information about cookie management with specific web browsers, it can be found at the browsers' respective websites.
-        </p>
+        <section>
+          <h2 className="font-heading text-xl font-bold text-text-primary mb-3">9. Third-Party Services</h2>
+          <p>We use the following services, each with their own privacy policies:</p>
+          <ul className="list-disc list-inside mt-3 space-y-2 pl-2">
+            <li>GitHub OAuth &amp; Google OAuth (authentication)</li>
+            <li>Resend (email delivery)</li>
+            <li>AWS S3 (file storage)</li>
+            <li>Turso (database)</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 className="font-heading text-xl font-bold text-text-primary mb-3">10. Changes to This Policy</h2>
+          <p>
+            We may update this Privacy Policy from time to time and will notify you by posting the new policy
+            with an updated effective date.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="font-heading text-xl font-bold text-text-primary mb-3">11. Contact</h2>
+          <p>
+            Questions? Contact us at{" "}
+            <a href="mailto:hello@buildvine.tech" className="text-accent hover:underline">
+              hello@buildvine.tech
+            </a>.
+          </p>
+        </section>
+      </div>
+
+      <div className="mt-16 pt-8 border-t border-border-default flex gap-6">
+        <Link href="/terms" className="text-sm text-accent hover:underline">Terms of Service →</Link>
+        <Link href="/" className="text-sm text-text-secondary hover:text-text-primary">Back to Home</Link>
       </div>
     </div>
   );

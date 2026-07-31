@@ -1,76 +1,118 @@
 import { Metadata } from "next";
-import { Telescope } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Terms of Service | BuildVine",
-  description: "Terms of Service for BuildVine",
+  title: "Terms of Service",
+  description: "BuildVine Terms of Service — the rules and guidelines for using our platform.",
 };
 
 export default function TermsPage() {
   return (
-    <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
+    <div className="max-w-3xl">
+      {/* Header */}
       <div className="mb-12">
-        <h1 className="text-4xl font-extrabold tracking-tight text-text-primary font-heading flex items-center gap-4 mb-4">
-          <Telescope className="text-accent" size={36} />
+        <p className="text-sm font-medium text-accent mb-2">Legal</p>
+        <h1 className="font-heading text-4xl font-extrabold tracking-tight text-text-primary mb-4">
           Terms of Service
         </h1>
-        <p className="text-text-secondary text-lg">
-          Last updated: {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+        <p className="text-text-secondary">
+          Last updated: July 30, 2026
         </p>
       </div>
 
-      <div className="prose prose-invert max-w-none text-text-secondary prose-headings:text-text-primary prose-a:text-accent hover:prose-a:text-accent-hover">
-        <p>
-          Welcome to BuildVine!
-        </p>
-        <p>
-          These terms and conditions outline the rules and regulations for the use of BuildVine's Website, located at buildvine.tech.
-        </p>
-        <p>
-          By accessing this website we assume you accept these terms and conditions. Do not continue to use BuildVine if you do not agree to take all of the terms and conditions stated on this page.
-        </p>
+      {/* Content */}
+      <div className="space-y-10 text-text-secondary leading-relaxed">
+        <section>
+          <h2 className="font-heading text-xl font-bold text-text-primary mb-3">1. Acceptance of Terms</h2>
+          <p>
+            By accessing or using BuildVine (&ldquo;the Service&rdquo;), you agree to be bound by these Terms of Service.
+            If you do not agree to these terms, please do not use the Service.
+            These terms apply to all visitors, users, and others who access or use the Service.
+          </p>
+        </section>
 
-        <h2>Cookies</h2>
-        <p>
-          We employ the use of cookies. By accessing BuildVine, you agreed to use cookies in agreement with the BuildVine's Privacy Policy.
-        </p>
-        <p>
-          Most interactive websites use cookies to let us retrieve the user's details for each visit. Cookies are used by our website to enable the functionality of certain areas to make it easier for people visiting our website. Some of our affiliate/advertising partners may also use cookies.
-        </p>
+        <section>
+          <h2 className="font-heading text-xl font-bold text-text-primary mb-3">2. Use of the Service</h2>
+          <p>BuildVine is a platform for showcasing software projects. You agree to use the Service only for lawful purposes. You must not:</p>
+          <ul className="list-disc list-inside mt-3 space-y-2 pl-2">
+            <li>Post content that is illegal, harmful, or violates any third-party rights.</li>
+            <li>Attempt to gain unauthorized access to the Service or other users&apos; accounts.</li>
+            <li>Use the Service to distribute spam, malware, or other malicious content.</li>
+            <li>Impersonate any person or entity.</li>
+          </ul>
+        </section>
 
-        <h2>License</h2>
-        <p>
-          Unless otherwise stated, BuildVine and/or its licensors own the intellectual property rights for all material on BuildVine. All intellectual property rights are reserved. You may access this from BuildVine for your own personal use subjected to restrictions set in these terms and conditions.
-        </p>
-        <p>You must not:</p>
-        <ul>
-          <li>Republish material from BuildVine</li>
-          <li>Sell, rent or sub-license material from BuildVine</li>
-          <li>Reproduce, duplicate or copy material from BuildVine</li>
-          <li>Redistribute content from BuildVine</li>
-        </ul>
+        <section>
+          <h2 className="font-heading text-xl font-bold text-text-primary mb-3">3. User Accounts</h2>
+          <p>
+            You are responsible for maintaining the confidentiality of your account credentials and for all activities
+            that occur under your account. Notify us immediately of any unauthorized use.
+          </p>
+        </section>
 
-        <h2>User Content</h2>
-        <p>
-          Parts of this website offer an opportunity for users to post and exchange opinions and information in certain areas of the website. BuildVine does not filter, edit, publish or review Comments prior to their presence on the website. Comments do not reflect the views and opinions of BuildVine, its agents and/or affiliates. Comments reflect the views and opinions of the person who post their views and opinions. To the extent permitted by applicable laws, BuildVine shall not be liable for the Comments or for any liability, damages or expenses caused and/or suffered as a result of any use of and/or posting of and/or appearance of the Comments on this website.
-        </p>
-        <p>
-          BuildVine reserves the right to monitor all Comments and to remove any Comments which can be considered inappropriate, offensive or causes breach of these Terms and Conditions.
-        </p>
+        <section>
+          <h2 className="font-heading text-xl font-bold text-text-primary mb-3">4. User Content</h2>
+          <p>
+            You retain ownership of any content you post on BuildVine. By posting content, you grant BuildVine
+            a worldwide, non-exclusive, royalty-free license to display and promote your content within the Service.
+            You are solely responsible for the content you post.
+          </p>
+        </section>
 
-        <h2>Disclaimer</h2>
-        <p>
-          To the maximum extent permitted by applicable law, we exclude all representations, warranties and conditions relating to our website and the use of this website. Nothing in this disclaimer will:
-        </p>
-        <ul>
-          <li>limit or exclude our or your liability for death or personal injury;</li>
-          <li>limit or exclude our or your liability for fraud or fraudulent misrepresentation;</li>
-          <li>limit any of our or your liabilities in any way that is not permitted under applicable law; or</li>
-          <li>exclude any of our or your liabilities that may not be excluded under applicable law.</li>
-        </ul>
-        <p>
-          As long as the website and the information and services on the website are provided free of charge, we will not be liable for any loss or damage of any nature.
-        </p>
+        <section>
+          <h2 className="font-heading text-xl font-bold text-text-primary mb-3">5. Intellectual Property</h2>
+          <p>
+            The BuildVine platform, including its design, code, and branding, is owned by BuildVine and protected
+            by copyright and other intellectual property laws. You may not copy or distribute any part of the
+            Service without prior written permission.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="font-heading text-xl font-bold text-text-primary mb-3">6. Termination</h2>
+          <p>
+            We reserve the right to suspend or terminate your account at any time if you violate these terms
+            or engage in conduct harmful to the Service or other users.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="font-heading text-xl font-bold text-text-primary mb-3">7. Disclaimer of Warranties</h2>
+          <p>
+            The Service is provided &ldquo;as is&rdquo; without warranties of any kind. We do not warrant that the
+            Service will be uninterrupted or error-free.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="font-heading text-xl font-bold text-text-primary mb-3">8. Limitation of Liability</h2>
+          <p>
+            To the fullest extent permitted by law, BuildVine shall not be liable for any indirect, incidental,
+            special, or consequential damages arising from your use of the Service.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="font-heading text-xl font-bold text-text-primary mb-3">9. Changes to Terms</h2>
+          <p>
+            We may update these Terms from time to time. Continued use of the Service after changes constitutes
+            acceptance of the new terms.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="font-heading text-xl font-bold text-text-primary mb-3">10. Contact</h2>
+          <p>
+            Questions? Contact us at{" "}
+            <a href="mailto:hello@buildvine.tech" className="text-accent hover:underline">
+              hello@buildvine.tech
+            </a>.
+          </p>
+        </section>
+      </div>
+
+      <div className="mt-16 pt-8 border-t border-border-default flex gap-6">
+        <Link href="/privacy" className="text-sm text-accent hover:underline">Privacy Policy →</Link>
+        <Link href="/" className="text-sm text-text-secondary hover:text-text-primary">Back to Home</Link>
       </div>
     </div>
   );

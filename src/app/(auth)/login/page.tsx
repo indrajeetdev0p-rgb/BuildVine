@@ -1,17 +1,28 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { Mail, Eye, EyeOff, ArrowRight } from "lucide-react";
 import { Button, Input } from "@/components/ui";
 import { GithubIcon, GoogleIcon } from "@/components/icons";
-import { signIn } from "@/lib/auth-client";
+import { signIn, useSession } from "@/lib/auth-client";
 import { toast } from "sonner";
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
+  const { data: session } = useSession();
+
+  useEffect(() => {
+    if (session?.user) {
+      router.replace("/dashboard");
+    }
+  }, [session, router]);
+
+  if (session?.user) return null;
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -58,12 +69,14 @@ export default function LoginPage() {
         {/* Logo */}
         <div className="text-center mb-8">
           <Link href="/" className="inline-flex items-center gap-2.5">
-            <div
-              className="flex h-10 w-10 items-center justify-center rounded-xl text-lg font-bold text-white"
-              style={{ backgroundImage: "var(--accent-gradient)" }}
-            >
-              B
-            </div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/logo.png"
+              alt="BuildVine Logo"
+              width={40}
+              height={40}
+              className="rounded-xl"
+            />
             <span className="font-heading text-2xl font-extrabold tracking-tight">
               BuildVine
             </span>

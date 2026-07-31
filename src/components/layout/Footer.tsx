@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Heart } from "lucide-react";
 import { GithubIcon, TwitterIcon } from "@/components/icons";
 
@@ -22,9 +23,9 @@ const FOOTER_SECTIONS = [
   {
     title: "Company",
     links: [
-      { label: "Contact", href: "mailto:hello@buildvine.tech" },
-      { label: "Terms", href: "#" },
-      { label: "Privacy", href: "#" },
+      { label: "Contact", href: "/contact" },
+      { label: "Terms", href: "/terms" },
+      { label: "Privacy", href: "/privacy" },
     ],
   },
 ] as const;
@@ -38,12 +39,13 @@ export function Footer() {
           {/* Brand Column */}
           <div className="col-span-2 sm:col-span-1">
             <Link href="/" className="flex items-center gap-2.5">
-              <div
-                className="flex h-7 w-7 items-center justify-center rounded-md text-xs font-bold text-white"
-                style={{ backgroundImage: "var(--accent-gradient)" }}
-              >
-                B
-              </div>
+              <Image
+                src="/logo.png"
+                alt="BuildVine Logo"
+                width={33}
+                height={33}
+                className="rounded-md"
+              />
               <span className="font-heading text-lg font-extrabold tracking-tight">
                 BuildVine
               </span>
@@ -51,26 +53,6 @@ export function Footer() {
             <p className="mt-3 text-sm text-text-tertiary leading-relaxed max-w-[240px]">
               The home for every project. One link, everything inside.
             </p>
-            <div className="mt-4 flex items-center gap-3">
-              <a
-                href="https://github.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-text-tertiary hover:text-text-primary transition-colors"
-                aria-label="GitHub"
-              >
-                <GithubIcon size={18} />
-              </a>
-              <a
-                href="https://twitter.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-text-tertiary hover:text-text-primary transition-colors"
-                aria-label="Twitter"
-              >
-                <TwitterIcon size={18} />
-              </a>
-            </div>
           </div>
 
           {/* Link Columns */}
@@ -104,17 +86,6 @@ export function Footer() {
             &copy; {new Date().getFullYear()} BuildVine. All rights reserved.
           </p>
 
-          {/* suppressHydrationWarning prevents a crash when ad-blockers strip this link */}
-          <a
-            href="https://www.buymeacoffee.com/YOUR_USERNAME"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-border-default bg-bg-elevated hover:bg-bg-hover hover:border-[#FFDD00]/40 transition-all text-xs font-semibold text-text-secondary hover:text-text-primary group"
-            suppressHydrationWarning
-          >
-            <span className="text-base group-hover:scale-110 transition-transform">☕</span>
-            Buy me a coffee
-          </a>
         </div>
       </div>
     </footer>

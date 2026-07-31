@@ -15,40 +15,7 @@ export interface Sponsor {
   color: string; // Accent color for the card border glow
 }
 
-export const SPONSORS: Sponsor[] = [
-  {
-    name: "DigitalOcean",
-    tagline: "Get $200 in free credits to deploy your next project",
-    url: "https://www.digitalocean.com/?refcode=YOUR_REFERRAL_CODE&utm_campaign=Referral_Invite&utm_medium=Referral_Program",
-    cta: "Claim $200 Credits →",
-    icon: "🌊",
-    color: "#0080FF",
-  },
-  {
-    name: "Vercel",
-    tagline: "Deploy your frontend instantly with zero configuration",
-    url: "https://vercel.com/?ref=buildvine",
-    cta: "Deploy for Free →",
-    icon: "▲",
-    color: "#ffffff",
-  },
-  {
-    name: "Turso",
-    tagline: "SQLite for production — globally replicated, edge-fast",
-    url: "https://turso.tech/?ref=buildvine",
-    cta: "Try Turso Free →",
-    icon: "🐢",
-    color: "#4FF8D2",
-  },
-  {
-    name: "Namecheap",
-    tagline: "Register your dream domain starting at $1.98/year",
-    url: "https://www.namecheap.com/?ref=buildvine",
-    cta: "Find Your Domain →",
-    icon: "🌐",
-    color: "#FF5100",
-  },
-];
+export const SPONSORS: Sponsor[] = [];
 
 const FALLBACK_SPONSOR: Sponsor = {
   name: "Your Ad Here",

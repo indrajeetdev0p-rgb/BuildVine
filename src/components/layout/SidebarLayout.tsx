@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import {
@@ -64,20 +65,21 @@ export default function SidebarLayout({
         {/* Logo */}
         <div className="flex h-16 items-center gap-2.5 px-6 border-b border-border-default">
           <Link href="/" className="flex items-center gap-2.5 hover:opacity-80 transition-opacity">
-            <div
-              className="flex h-8 w-8 items-center justify-center rounded-lg text-sm font-bold text-white"
-              style={{ backgroundImage: "var(--accent-gradient)" }}
-            >
-              B
-            </div>
+            <Image
+              src="/logo.png"
+              alt="BuildVine Logo"
+              width={33}
+              height={33}
+              className="rounded-lg"
+            />
             <span className="font-heading text-lg font-extrabold tracking-tight">
               BuildVine
             </span>
           </Link>
         </div>
 
-        {/* Nav */}
-        <nav className="flex-1 flex flex-col gap-1 p-3 mt-2">
+        {/* Nav — scrollable */}
+        <nav className="flex-1 flex flex-col gap-1 p-3 mt-2 overflow-y-auto">
           {SIDEBAR_LINKS.map((link) => {
             const Icon = link.icon;
             const isActive =
@@ -90,10 +92,9 @@ export default function SidebarLayout({
                 href={link.href}
                 className={`
                   flex items-center justify-between px-3 py-2.5 rounded-[var(--radius-md)] text-sm font-medium transition-all
-                  ${
-                    isActive
-                      ? "bg-accent/10 text-accent"
-                      : "text-text-secondary hover:bg-bg-hover hover:text-text-primary"
+                  ${isActive
+                    ? "bg-accent/10 text-accent"
+                    : "text-text-secondary hover:bg-bg-hover hover:text-text-primary"
                   }
                 `}
               >
@@ -108,7 +109,7 @@ export default function SidebarLayout({
               </Link>
             );
           })}
-          
+
           <div className="mt-6 mb-2 px-3 text-xs font-semibold uppercase tracking-wider text-text-tertiary">
             Community
           </div>
@@ -122,10 +123,9 @@ export default function SidebarLayout({
                 href={link.href}
                 className={`
                   flex items-center justify-between px-3 py-2.5 rounded-[var(--radius-md)] text-sm font-medium transition-all
-                  ${
-                    isActive
-                      ? "bg-accent/10 text-accent"
-                      : "text-text-secondary hover:bg-bg-hover hover:text-text-primary"
+                  ${isActive
+                    ? "bg-accent/10 text-accent"
+                    : "text-text-secondary hover:bg-bg-hover hover:text-text-primary"
                   }
                 `}
               >
@@ -155,39 +155,41 @@ export default function SidebarLayout({
           </div>
         </nav>
 
-        {/* Sidebar Sponsor */}
-        <div className="px-4 pb-3">
-          <SponsorCard sponsor={getSponsorByIndex(1)} variant="sidebar" />
-        </div>
+        {/* Bottom — always visible */}
+        <div className="flex-shrink-0">
+          <div className="px-4 pb-3">
+            <SponsorCard sponsor={getSponsorByIndex(1)} variant="sidebar" />
+          </div>
 
-        {/* Bottom */}
-        <div className="border-t border-border-default p-4 space-y-3">
-          <ThemeSwitcher placement="top" />
-          <div className="flex items-center gap-3 rounded-[var(--radius-md)] px-3 py-2.5">
-            <Link href={user.username ? `/${user.username}` : "/dashboard/settings"} className="flex-1 flex items-center gap-3 min-w-0 group cursor-pointer">
-              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-bg-elevated border border-border-default overflow-hidden text-xs font-bold text-text-primary uppercase shrink-0">
-                {(user.avatar || user.image) ? (
-                  <img src={user.avatar || user.image!} alt="Avatar" referrerPolicy="no-referrer" className="h-full w-full object-cover" />
-                ) : (
-                  <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${user.name}`} alt={user.name} className="h-full w-full object-cover bg-bg-tertiary" />
-                )}
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-text-primary truncate group-hover:text-accent transition-colors">
-                  {user.name}
-                </p>
-                <p className="text-xs text-text-tertiary truncate">
-                  {user.email}
-                </p>
-              </div>
-            </Link>
-            <button 
-              onClick={handleLogout}
-              className="text-text-tertiary hover:text-text-primary transition-colors cursor-pointer shrink-0"
-              title="Log out"
-            >
-              <LogOut size={16} />
-            </button>
+          {/* Bottom */}
+          <div className="border-t border-border-default p-4 space-y-3">
+            <ThemeSwitcher placement="top" />
+            <div className="flex items-center gap-3 rounded-[var(--radius-md)] px-3 py-2.5">
+              <Link href={user.username ? `/${user.username}` : "/dashboard/settings"} className="flex-1 flex items-center gap-3 min-w-0 group cursor-pointer">
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-bg-elevated border border-border-default overflow-hidden text-xs font-bold text-text-primary uppercase shrink-0">
+                  {(user.avatar || user.image) ? (
+                    <img src={user.avatar || user.image!} alt="Avatar" referrerPolicy="no-referrer" className="h-full w-full object-cover" />
+                  ) : (
+                    <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${user.name}`} alt={user.name} className="h-full w-full object-cover bg-bg-tertiary" />
+                  )}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-medium text-text-primary truncate group-hover:text-accent transition-colors">
+                    {user.name}
+                  </p>
+                  <p className="text-xs text-text-tertiary truncate">
+                    {user.email}
+                  </p>
+                </div>
+              </Link>
+              <button
+                onClick={handleLogout}
+                className="text-text-tertiary hover:text-text-primary transition-colors cursor-pointer shrink-0"
+                title="Log out"
+              >
+                <LogOut size={16} />
+              </button>
+            </div>
           </div>
         </div>
       </aside>
@@ -197,12 +199,13 @@ export default function SidebarLayout({
         {/* Mobile Header */}
         <header className="lg:hidden flex items-center justify-between h-16 px-4 border-b border-border-default bg-bg-secondary sticky top-0 z-40">
           <Link href="/" className="flex items-center gap-2">
-            <div
-              className="flex h-7 w-7 items-center justify-center rounded-md text-xs font-bold text-white"
-              style={{ backgroundImage: "var(--accent-gradient)" }}
-            >
-              B
-            </div>
+            <Image
+              src="/logo.png"
+              alt="BuildVine Logo"
+              width={28}
+              height={28}
+              className="rounded-md"
+            />
             <span className="font-heading text-lg font-extrabold">
               BuildVine
             </span>
@@ -234,11 +237,10 @@ export default function SidebarLayout({
                       key={link.href}
                       href={link.href}
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className={`flex items-center gap-3 rounded-[var(--radius-md)] px-3 py-2.5 text-sm font-medium transition-colors ${
-                        isActive
-                          ? "bg-accent/10 text-accent font-semibold"
-                          : "text-text-secondary hover:bg-bg-hover hover:text-text-primary"
-                      }`}
+                      className={`flex items-center gap-3 rounded-[var(--radius-md)] px-3 py-2.5 text-sm font-medium transition-colors ${isActive
+                        ? "bg-accent/10 text-accent font-semibold"
+                        : "text-text-secondary hover:bg-bg-hover hover:text-text-primary"
+                        }`}
                     >
                       <Icon size={18} className={isActive ? "text-accent" : "text-text-tertiary"} />
                       {link.label}
@@ -259,11 +261,10 @@ export default function SidebarLayout({
                       key={link.href}
                       href={link.href}
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className={`flex items-center gap-3 rounded-[var(--radius-md)] px-3 py-2.5 text-sm font-medium transition-colors ${
-                        isActive
-                          ? "bg-accent/10 text-accent font-semibold"
-                          : "text-text-secondary hover:bg-bg-hover hover:text-text-primary"
-                      }`}
+                      className={`flex items-center gap-3 rounded-[var(--radius-md)] px-3 py-2.5 text-sm font-medium transition-colors ${isActive
+                        ? "bg-accent/10 text-accent font-semibold"
+                        : "text-text-secondary hover:bg-bg-hover hover:text-text-primary"
+                        }`}
                     >
                       <Icon size={18} className={isActive ? "text-accent" : "text-text-tertiary"} />
                       {link.label}
@@ -275,7 +276,7 @@ export default function SidebarLayout({
               <div className="mt-auto pb-8 pt-4 border-t border-border-default">
                 <div className="flex items-center gap-3 px-3 mb-4">
                   <div className="h-10 w-10 rounded-full overflow-hidden bg-bg-tertiary border border-border-default shrink-0">
-                    <img 
+                    <img
                       src={user.avatar || user.image || `https://api.dicebear.com/9.x/notionists/svg?seed=${user.username || user.name}`}
                       alt={user.name || "User"}
                       className="h-full w-full object-cover"
@@ -285,7 +286,7 @@ export default function SidebarLayout({
                     <span className="text-sm font-medium text-text-primary truncate">{user.name}</span>
                     <span className="text-xs text-text-tertiary truncate">{user.email}</span>
                   </div>
-                  <button 
+                  <button
                     onClick={() => {
                       setIsMobileMenuOpen(false);
                       handleLogout();
