@@ -23,9 +23,6 @@ import {
 import { Button } from "@/components/ui";
 import { ThemeSwitcher } from "@/components/ui/ThemeSwitcher";
 import { signOut } from "@/lib/auth-client";
-import { SponsorCard } from "@/components/ads/SponsorCard";
-import { getSponsorByIndex } from "@/lib/sponsors";
-
 const SIDEBAR_LINKS = [
   { href: "/dashboard", label: "Overview", icon: LayoutDashboard },
   { href: "/dashboard/projects", label: "Projects", icon: FolderKanban },
@@ -155,12 +152,7 @@ export default function SidebarLayout({
           </div>
         </nav>
 
-        {/* Bottom — always visible */}
         <div className="flex-shrink-0">
-          <div className="px-4 pb-3">
-            <SponsorCard sponsor={getSponsorByIndex(1)} variant="sidebar" />
-          </div>
-
           {/* Bottom */}
           <div className="border-t border-border-default p-4 space-y-3">
             <ThemeSwitcher placement="top" />
