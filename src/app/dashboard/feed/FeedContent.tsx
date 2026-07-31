@@ -50,11 +50,13 @@ export function FeedContent({ initialProjects, initialUpdates }: { initialProjec
                 <Link href={`/project/${project.slug}`} className="h-full block">
                   <Card className="p-6 bg-bg-secondary/50 border-border-default hover:border-accent/50 hover:bg-bg-elevated transition-all group h-full flex flex-col">
                     <div className="flex items-center gap-3 mb-6 pb-4 border-b border-border-default/50">
-                      <img 
-                        src={project.user.avatar || `https://api.dicebear.com/7.x/avataaars/svg?seed=${project.user.username}`} 
-                        alt={project.user.name} 
-                        className="h-10 w-10 rounded-full bg-bg-tertiary object-cover border border-border-default" 
-                      />
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-bg-tertiary border border-border-default overflow-hidden">
+                        <img 
+                          src={project.user.avatar || project.user.image || `https://api.dicebear.com/7.x/avataaars/svg?seed=${project.user.username}`} 
+                          alt={project.user.name}
+                          className="h-full w-full object-cover" 
+                        />
+                      </div>
                       <div>
                         <p className="text-sm font-bold text-text-primary">{project.user.name}</p>
                         <p className="text-xs text-text-tertiary">Launched a new project • {format(new Date(project.createdAt), "MMM d, yyyy")}</p>
@@ -93,7 +95,7 @@ export function FeedContent({ initialProjects, initialUpdates }: { initialProjec
                 <Card className="p-6 bg-bg-secondary/50 border-border-default relative overflow-hidden h-full flex flex-col">
                   <div className="flex items-center gap-3 mb-6 pb-4 border-b border-border-default/50">
                     <img 
-                      src={update.project.user.avatar || `https://api.dicebear.com/7.x/avataaars/svg?seed=${update.project.user.username}`} 
+                      src={update.project.user.avatar || update.project.user.image || `https://api.dicebear.com/7.x/avataaars/svg?seed=${update.project.user.username}`} 
                       alt={update.project.user.name} 
                       className="h-10 w-10 rounded-full bg-bg-tertiary object-cover border border-border-default" 
                     />

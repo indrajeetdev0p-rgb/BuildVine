@@ -23,6 +23,7 @@ import {
 import { Button } from "@/components/ui";
 import { ThemeSwitcher } from "@/components/ui/ThemeSwitcher";
 import { signOut } from "@/lib/auth-client";
+import { getUnreadNotifications } from "@/lib/actions/notification";
 const SIDEBAR_LINKS = [
   { href: "/dashboard", label: "Overview", icon: LayoutDashboard },
   { href: "/dashboard/projects", label: "Projects", icon: FolderKanban },
@@ -48,6 +49,20 @@ export default function SidebarLayout({
   const pathname = usePathname();
   const router = useRouter();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [unreadCount, setUnreadCount] = useState(0);
+
+  useEffect(() => {
+    async function loadNotifications() {
+      try {
+        const data = await getUnreadNotifications();
+        setUnreadCount(data.length);
+      } catch (err) {}
+    }
+    loadNotifications();
+    
+    const interval = setInterval(loadNotifications, 30000);
+    return () => clearInterval(interval);
+  }, []);
 
   const handleLogout = async () => {
     await signOut();
@@ -100,7 +115,14 @@ export default function SidebarLayout({
                     size={18}
                     className={isActive ? "text-accent" : "text-text-tertiary"}
                   />
-                  {link.label}
+                  <div className="flex items-center gap-2">
+                    {link.label}
+                    {link.label === "Notifications" && unreadCount > 0 && (
+                      <span className="flex h-[18px] min-w-[18px] items-center justify-center rounded-full bg-danger px-1 text-[10px] font-bold text-white shadow-sm">
+                        {unreadCount > 99 ? "99+" : unreadCount}
+                      </span>
+                    )}
+                  </div>
                 </div>
                 {isActive && <ChevronRight size={16} className="text-accent" />}
               </Link>
@@ -235,7 +257,14 @@ export default function SidebarLayout({
                         }`}
                     >
                       <Icon size={18} className={isActive ? "text-accent" : "text-text-tertiary"} />
-                      {link.label}
+                      <div className="flex items-center gap-2">
+                        {link.label}
+                        {link.label === "Notifications" && unreadCount > 0 && (
+                          <span className="flex h-[18px] min-w-[18px] items-center justify-center rounded-full bg-danger px-1 text-[10px] font-bold text-white shadow-sm">
+                            {unreadCount > 99 ? "99+" : unreadCount}
+                          </span>
+                        )}
+                      </div>
                     </Link>
                   );
                 })}

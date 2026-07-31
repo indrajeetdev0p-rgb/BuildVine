@@ -183,26 +183,30 @@ export default function UserContent({ user }: { user: any }) {
                       </div>
                       <div className="overflow-y-auto p-4 flex-1">
                         {modalType === "followers" && user.followers?.map((f: any) => (
-                          <Link href={`/${f.follower.username}`} key={f.followerId} onClick={() => setModalType(null)} className="flex items-center gap-3 p-3 hover:bg-bg-hover rounded-xl transition-colors">
-                            <img src={f.follower.avatar || `https://api.dicebear.com/7.x/avataaars/svg?seed=${f.follower.username}`} alt={f.follower.name} className="h-10 w-10 rounded-full bg-bg-tertiary object-cover border border-border-default" />
-                            <div>
-                              <p className="font-bold text-text-primary text-sm">{f.follower.name}</p>
-                              <p className="text-text-tertiary text-xs">@{f.follower.username}</p>
-                            </div>
-                          </Link>
+                          <div key={f.id} className="flex items-center justify-between p-3 rounded-[var(--radius-md)] border border-border-default hover:border-accent/50 transition-colors bg-bg-secondary/30">
+                            <Link href={`/${f.follower.username}`} className="flex items-center gap-3">
+                              <img src={f.follower.avatar || f.follower.image || `https://api.dicebear.com/7.x/avataaars/svg?seed=${f.follower.username}`} alt={f.follower.name} className="h-10 w-10 rounded-full bg-bg-tertiary object-cover border border-border-default" />
+                              <div>
+                                <p className="text-sm font-semibold text-text-primary hover:text-accent transition-colors">{f.follower.name}</p>
+                                <p className="text-xs text-text-tertiary">@{f.follower.username}</p>
+                              </div>
+                            </Link>
+                          </div>
                         ))}
                         {modalType === "followers" && user.followers?.length === 0 && (
                           <p className="text-text-tertiary text-center text-sm py-8">No followers yet.</p>
                         )}
 
                         {modalType === "following" && user.following?.map((f: any) => (
-                          <Link href={`/${f.following.username}`} key={f.followingId} onClick={() => setModalType(null)} className="flex items-center gap-3 p-3 hover:bg-bg-hover rounded-xl transition-colors">
-                            <img src={f.following.avatar || `https://api.dicebear.com/7.x/avataaars/svg?seed=${f.following.username}`} alt={f.following.name} className="h-10 w-10 rounded-full bg-bg-tertiary object-cover border border-border-default" />
+                          <div key={f.id} className="flex items-center justify-between p-3 rounded-[var(--radius-md)] border border-border-default hover:border-accent/50 transition-colors bg-bg-secondary/30">
+                            <Link href={`/${f.following.username}`} className="flex items-center gap-3">
+                              <img src={f.following.avatar || f.following.image || `https://api.dicebear.com/7.x/avataaars/svg?seed=${f.following.username}`} alt={f.following.name} className="h-10 w-10 rounded-full bg-bg-tertiary object-cover border border-border-default" />
                             <div>
                               <p className="font-bold text-text-primary text-sm">{f.following.name}</p>
                               <p className="text-text-tertiary text-xs">@{f.following.username}</p>
                             </div>
-                          </Link>
+                            </Link>
+                          </div>
                         ))}
                         {modalType === "following" && user.following?.length === 0 && (
                           <p className="text-text-tertiary text-center text-sm py-8">Not following anyone yet.</p>
