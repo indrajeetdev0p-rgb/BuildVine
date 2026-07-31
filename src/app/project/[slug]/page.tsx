@@ -55,6 +55,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
             name: true,
             username: true,
             avatar: true,
+            image: true,
           },
         },
         techStack: true,

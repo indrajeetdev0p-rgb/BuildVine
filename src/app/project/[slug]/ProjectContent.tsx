@@ -316,7 +316,7 @@ export default function ProjectContent({ project, isModal = false }: { project: 
                     >
                       <div className="flex h-10 w-10 items-center justify-center rounded-full bg-bg-elevated border border-border-default overflow-hidden text-sm font-bold shrink-0">
                         <img 
-                          src={project.user.avatar || `https://api.dicebear.com/7.x/avataaars/svg?seed=${project.user.username}`} 
+                          src={project.user.avatar || project.user.image || `https://api.dicebear.com/7.x/avataaars/svg?seed=${project.user.username}`} 
                           alt={project.user.name} 
                           className="h-full w-full object-cover" 
                         />

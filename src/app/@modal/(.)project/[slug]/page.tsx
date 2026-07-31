@@ -18,6 +18,7 @@ export default async function ProjectModalPage({ params }: { params: Promise<{ s
             name: true,
             username: true,
             avatar: true,
+            image: true,
           },
         },
         techStack: true,
