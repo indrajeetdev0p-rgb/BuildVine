@@ -2,11 +2,12 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export function ModalWrapper({ children }: { children: React.ReactNode }) {
   const router = useRouter();
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(true);
 
   const handleClose = () => {
@@ -22,6 +23,14 @@ export function ModalWrapper({ children }: { children: React.ReactNode }) {
       document.body.style.overflow = "unset";
     };
   }, []);
+
+  // Force close the modal if the user clicks a link inside it that navigates away
+  useEffect(() => {
+    if (!pathname.includes("/project/")) {
+      setIsOpen(false);
+      document.body.style.overflow = "unset";
+    }
+  }, [pathname]);
 
   return (
     <AnimatePresence>
