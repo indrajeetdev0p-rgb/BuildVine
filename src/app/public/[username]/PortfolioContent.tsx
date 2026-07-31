@@ -165,9 +165,7 @@ export default function PortfolioContent({ user, isFollowing }: { user: any, isF
       {/* Footer Branding CTA */}
       <footer className="mt-auto py-8 text-center relative z-10">
         <Link href="/" className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-bg-secondary border border-border-default hover:border-accent transition-colors group shadow-lg">
-          <div className="flex h-5 w-5 items-center justify-center rounded text-[10px] font-bold text-white" style={{ backgroundImage: "var(--accent-gradient)" }}>
-            B
-          </div>
+          <img src="/logo.png" alt="BuildVine" className="h-5 w-5 rounded object-cover" />
           <span className="text-sm font-medium text-text-secondary group-hover:text-text-primary">
             Build your portfolio on BuildVine
           </span>
