@@ -73,19 +73,26 @@ export default function PortfolioContent({ user, isFollowing }: { user: any, isF
                   </div>
                 )}
                 {user.website && (
-                  <a href={user.website} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-text-primary transition-colors">
-                    <ExternalLink size={16} />
-                    {new URL(user.website).hostname.replace("www.", "")}
-                  </a>
+                  (() => {
+                    const formattedUrl = user.website.startsWith("http") ? user.website : `https://${user.website}`;
+                    let hostname = user.website;
+                    try { hostname = new URL(formattedUrl).hostname.replace("www.", ""); } catch(e) {}
+                    return (
+                      <a href={formattedUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-text-primary transition-colors">
+                        <ExternalLink size={16} />
+                        {hostname}
+                      </a>
+                    );
+                  })()
                 )}
                 {user.github && (
-                  <a href={user.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-text-primary transition-colors">
+                  <a href={user.github.startsWith("http") ? user.github : `https://${user.github}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-text-primary transition-colors">
                     <GithubIcon size={16} />
                     GitHub
                   </a>
                 )}
                 {user.twitter && (
-                  <a href={user.twitter} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-text-primary transition-colors">
+                  <a href={user.twitter.startsWith("http") ? user.twitter : `https://twitter.com/${user.twitter.replace(/^@/, "")}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-text-primary transition-colors">
                     <TwitterIcon size={16} />
                     Twitter
                   </a>
