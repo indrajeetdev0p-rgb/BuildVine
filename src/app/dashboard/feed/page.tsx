@@ -18,7 +18,7 @@ export default async function FeedPage() {
     select: { followingId: true },
   });
 
-  const followingIds = following.map(f => f.followingId);
+  const followingIds = following.map((f: { followingId: string }) => f.followingId);
 
   // Fetch recent projects from followed users
   const projects = await db.project.findMany({
