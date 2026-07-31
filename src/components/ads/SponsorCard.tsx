@@ -20,24 +20,24 @@ export function SponsorCard({ variant = "feed" }: SponsorCardProps) {
 
   return (
     <div 
-      className={`relative rounded-xl border border-border-default overflow-hidden bg-bg-secondary/20 flex flex-col justify-center items-center ${
-        variant === "sidebar" ? "p-2 min-h-[120px]" : 
-        variant === "banner" ? "p-4 min-h-[100px] col-span-full" : 
-        "p-4 min-h-[120px]"
+      className={`relative rounded-xl border border-border-default overflow-hidden bg-bg-secondary/20 flex flex-col justify-center items-center mt-4 ${
+        variant === "sidebar" ? "p-2 h-[200px]" : 
+        variant === "banner" ? "p-4 h-[120px] col-span-full" : 
+        "p-4 h-[250px]"
       }`}
     >
       {/* Subtle Label */}
-      <span className="absolute top-2 left-3 text-[9px] font-semibold uppercase tracking-widest text-text-tertiary">
+      <span className="absolute top-2 left-3 text-[9px] font-semibold uppercase tracking-widest text-text-tertiary z-10">
         Advertisement
       </span>
 
       {/* AdSense Unit */}
       <ins
         className="adsbygoogle"
-        style={{ display: "block", width: "100%", height: "100%", minHeight: "100%" }}
+        style={{ display: "block", width: "100%", height: "100%" }}
         data-ad-client="ca-pub-8605608795686474"
         data-ad-slot="2352469195"
-        data-ad-format="auto"
+        data-ad-format={variant === "sidebar" ? "rectangle" : "auto"}
         data-full-width-responsive="true"
       />
     </div>
