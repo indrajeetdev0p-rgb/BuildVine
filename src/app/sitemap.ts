@@ -23,7 +23,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       where: { isPublic: true },
       select: { slug: true, updatedAt: true },
     });
-    projectPages = projects.map((p) => ({
+    projectPages = projects.map((p: { slug: string; updatedAt: Date }) => ({
       url: `${BASE_URL}/project/${p.slug}`,
       lastModified: p.updatedAt,
       changeFrequency: "weekly" as const,
@@ -39,8 +39,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       select: { username: true, updatedAt: true },
     });
     userPages = users
-      .filter((u) => u.username)
-      .map((u) => ({
+      .filter((u: { username: string | null; updatedAt: Date }) => u.username)
+      .map((u: { username: string | null; updatedAt: Date }) => ({
         url: `${BASE_URL}/${u.username}`,
         lastModified: u.updatedAt,
         changeFrequency: "weekly" as const,

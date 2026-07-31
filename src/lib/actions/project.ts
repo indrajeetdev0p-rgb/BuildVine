@@ -96,7 +96,7 @@ export async function createProject(formData: FormData) {
     });
 
     if (followers.length > 0) {
-      const notifications = followers.map(f => ({
+      const notifications = followers.map((f: { followerId: string }) => ({
         type: "NEW_PROJECT",
         title: `${session.user.name} launched a new project: ${project.name}`,
         link: `/public/project/${project.slug}`,
@@ -183,7 +183,7 @@ export async function getTrendingProjects() {
   });
 
   // Calculate trending score: (Upvotes * 3) + (Views * 1) + (Creator Followers * 2)
-  return projects.sort((a, b) => {
+  return projects.sort((a: any, b: any) => {
     const scoreA = (a._count.upvotes * 3) + (a.views * 1) + ((a.user._count?.followers || 0) * 2);
     const scoreB = (b._count.upvotes * 3) + (b.views * 1) + ((b.user._count?.followers || 0) * 2);
     return scoreB - scoreA; // Descending
@@ -222,7 +222,7 @@ export async function updateProject(projectId: string, formData: FormData) {
   const timelineJson = formData.get("timeline") as string;
   const timeline = timelineJson ? JSON.parse(timelineJson) : [];
 
-  await db.$transaction(async (tx) => {
+  await db.$transaction(async (tx: any) => {
     // 1. Update basic fields
     await tx.project.update({
       where: { id: projectId },
